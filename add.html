@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <title>Přidat příspěvek</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.6.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.6.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.6.1/firebase-firestore-compat.js"></script>
+</head>
+<body>
+  <h1>Přidat příspěvek</h1>
+  <button onclick="login()">Přihlásit se přes Google</button>
+  <form id="postForm">
+    <label>Album / Písnička:<br>
+      <input type="text" id="album" required>
+    </label><br>
+    <label>Hodnocení (1-5):<br>
+      <input type="number" id="rating" min="1" max="5" required>
+    </label><br>
+    <label>Komentář:<br>
+      <textarea id="comment"></textarea>
+    </label><br>
+    <button type="submit">Přidat</button>
+  </form>
+  <a href="index.html" class="btn">Zpět na feed</a>
+
+  <script src="app.js"></script>
+  <script>
+    initFirebase();
+    document.getElementById("postForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      addPost(
+        document.getElementById("album").value,
+        document.getElementById("rating").value,
+        document.getElementById("comment").value
+      );
+    });
+  </script>
+</body>
+</html>
