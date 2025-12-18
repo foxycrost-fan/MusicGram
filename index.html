@@ -2,22 +2,22 @@
 <html lang="cs">
 <head>
   <meta charset="UTF-8">
-  <title>MusicGram Feed</title>
+  <title>MusicGram</title>
   <link rel="stylesheet" href="styles.css">
-  <!-- Firebase SDK -->
-  <script src="https://www.gstatic.com/firebasejs/10.6.1/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.6.1/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.6.1/firebase-firestore-compat.js"></script>
 </head>
 <body>
   <h1>MusicGram</h1>
-  <button onclick="login()">Přihlásit se přes Google</button>
+
+  <button id="loginBtn">Přihlásit se přes Google</button>
   <a href="add.html" class="btn">Přidat nový příspěvek</a>
+
   <div id="feed"></div>
 
-  <script src="app.js"></script>
-  <script>
-    initFirebase();
+  <script type="module">
+    import { login, loadFeed } from "./firebase.js";
+
+    document.querySelector("#loginBtn").onclick = login;
+
     loadFeed();
   </script>
 </body>
